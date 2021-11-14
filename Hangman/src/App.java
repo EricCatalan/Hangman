@@ -24,14 +24,15 @@ public class App {
         hangman.setUpBoard();
         menu.setSelectedWord(wordSelector.getSelectedWord());
         iterateThroughGame();
-        System.exit(0);
-
     }
 
     private void iterateThroughGame() {
         while (hangman.getStageLevel() <= 7) {
             printBoard();
             if (wordSelector.wasGuessCorrect(this.inputLetter.toLowerCase())) {
+                if(wordSelector.getUpdatedWord().equals(wordSelector.getSelectedWord())){
+                    restart();
+                }
                 System.out.println("Great Guess!");
                 System.out.println();
                 iterateThroughGame();
@@ -41,12 +42,10 @@ public class App {
                 System.out.println();
                 hangman.addLevel();
             }
-
         }
-
         System.out.println("YOU LOSE");
         System.out.println("The word was " + wordSelector.getSelectedWord() + "!");
-        System.exit(1);
+        restart();
     }
     private void printBoard(){
         hangman.printBoard(wordSelector.getSelectedWordArray());
@@ -57,7 +56,22 @@ public class App {
         System.out.println("You have " + (8 - hangman.getStageLevel()) + " wrong guesses left! ");
         hangman.printStage(hangman.getStageLevel());
         this.inputLetter =(String) menu.getUserInput();
+        if(this.inputLetter.toLowerCase().equals("winner")){
+            restart();
+        }
 
+    }
+
+    private void restart(){
+        String yesOrNo = menu.yesOrNo().toString().toLowerCase();
+       if( yesOrNo.equals("y")){
+           hangman.reset();
+           wordSelector.reset();
+           run();
+       }
+       else if(yesOrNo.equals("n")){
+           System.exit(2);
+       }
     }
 
 }

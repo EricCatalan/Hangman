@@ -11,7 +11,11 @@ public class WordSelector {
     private List<String> incorrectLetters = new ArrayList<>();
     private List<String> correctLetters = new ArrayList<>();
     private List<String> selectedWordArray= new ArrayList<>();
+    private String updatedWord="";
 
+    public String getUpdatedWord() {
+        return updatedWord;
+    }
 
     public List<String> getSelectedWordArray() {
         return selectedWordArray;
@@ -24,9 +28,19 @@ public class WordSelector {
         for(int i =0; i<this.selectedWord.length(); i++){
             selectedWordArray.add("*");
         }
-
-
-
+    }
+    public void reset(){
+        wordLength=0;
+        selectedWord="";
+        for(int i=0; i<incorrectLetters.size();){
+            incorrectLetters.remove(i);
+        }
+        for(int i=0; i< correctLetters.size();){
+            correctLetters.remove(i);
+        }
+        for(int i=0;i<selectedWordArray.size();){
+            selectedWordArray.remove(i);
+        }
     }
 
     public String getSelectedWord() {
@@ -51,13 +65,13 @@ public class WordSelector {
             if(!correctGuess){
             incorrectLetters.add(guess);
             }
-            String updatedWord="";
+                updatedWord = "";
                 for(String string: selectedWordArray){
-                    updatedWord = updatedWord + string;
+                    this.updatedWord = this.updatedWord + string;
                     if(updatedWord.equals(selectedWord)){
                         System.out.println("YOU WIN!!!");
                         System.out.println("The correct word was " + selectedWord + "!");
-                        System.exit(0);
+                        correctGuess = true;
                     }
                 }
 

@@ -1,6 +1,7 @@
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Menu {
@@ -32,8 +33,9 @@ public class Menu {
             userInput = in.nextLine();
             if (userInput.toLowerCase().equals(selectedWord)) {
                 System.out.println("YOU WIN!!!");
-                System.exit(1);
-            }
+                choice = "winner";
+                return choice;
+                }
             wordGuess = true;
         }
         while (wordGuess) {
@@ -45,7 +47,20 @@ public class Menu {
                     wordGuess = false;
                 }
             }
-
         }return choice;
+    }
 
-    }}
+    public Object yesOrNo(){
+        boolean haveAnswer = false;
+        Object choice = null;
+        while(!haveAnswer){
+            System.out.println("Do you want to play again? Y/N: ");
+            userInput = in.nextLine();
+            if(userInput.toLowerCase().equals("y") || userInput.toLowerCase().equals("n")){
+                choice = userInput;
+                haveAnswer = true;
+            }
+        }
+        return choice;
+    }
+}

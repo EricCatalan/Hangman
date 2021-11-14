@@ -4,10 +4,16 @@ public class Hangman {
     private int stageLevel = 0;
     private int wordLength = 0;
     private String board;
-    private Boolean wonGame = false;
 
     public int getWordLength() {
         return wordLength;
+    }
+
+    public void reset(){
+        this.board="";
+        this.stageLevel = 0;
+        this.wordLength=0;
+
     }
 
     public void setWordLength(int wordLength) {
