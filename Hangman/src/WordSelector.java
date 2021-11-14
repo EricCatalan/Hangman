@@ -51,6 +51,16 @@ public class WordSelector {
             if(!correctGuess){
             incorrectLetters.add(guess);
             }
+            String updatedWord="";
+                for(String string: selectedWordArray){
+                    updatedWord = updatedWord + string;
+                    if(updatedWord.equals(selectedWord)){
+                        System.out.println("YOU WIN!!!");
+                        System.out.println("The correct word was " + selectedWord + "!");
+                        System.exit(0);
+                    }
+                }
+
         return correctGuess;
     }
 
