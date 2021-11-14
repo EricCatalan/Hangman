@@ -31,7 +31,7 @@ public class App {
     private void iterateThroughGame() {
         while (hangman.getStageLevel() <= 7) {
             printBoard();
-            if (wordSelector.wasGuessCorrect(this.inputLetter)) {
+            if (wordSelector.wasGuessCorrect(this.inputLetter.toLowerCase())) {
                 System.out.println("Great Guess!");
                 System.out.println();
                 iterateThroughGame();
